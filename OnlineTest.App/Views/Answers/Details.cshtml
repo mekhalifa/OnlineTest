@@ -1,0 +1,30 @@
+﻿@model OnlineTest.App.Models.AnswerDto
+
+@{
+    ViewData["Title"] = "Answer Details";
+}
+
+<h1 class="text-center">Answer</h1>
+
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AnswerText)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnswerText)
+        </dd>
+       
+        
+    </dl>
+</div>
+<br />
+<hr />
+<br />
+<div class="form-inline">
+    <a  asp-controller="Answers" asp-action="Edit" asp-route-id="@Model.Id" asp-route-qid="@ViewBag.QuestionId" class="btn btn-primary in">Edit</a>
+    
+    <a asp-controller="Answers" asp-action="Index" asp-route-qid="@ViewBag.QuestionId" class="btn btn-outline-dark ml-3">Back to List</a>
+</div>

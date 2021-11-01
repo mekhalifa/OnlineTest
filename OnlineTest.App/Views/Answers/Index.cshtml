@@ -1,0 +1,55 @@
+﻿@model IEnumerable<OnlineTest.App.Models.AnswerListAdminDto>
+
+@{
+    ViewData["Title"] = "Guestions";
+}
+
+
+<h3 class="text-center">Answers</h3>
+<p>
+    @{      if (ViewBag.limit)
+        {
+    <a asp-route-qid="@ViewBag.QuestionId" asp-action="Create" class="btn btn-primary" >New Answer</a>
+            }
+        }
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AnswerText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCorrect)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerText)
+            </td>
+            <td>
+                @{if (item.IsCorrect)
+                    {
+                        <p class=" text-success">True</p>
+                    }
+                    else
+                    {
+                        <p class=" text-danger">False</p>
+                    }
+                }
+            </td>
+            <td>
+
+                <a asp-action="Edit" asp-route-id="@item.Id" asp-route-qid="@ViewBag.QuestionId" class="btn btn-outline-primary">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.Id" asp-route-qid="@ViewBag.QuestionId" class="btn btn-outline-info">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" asp-route-qid="@ViewBag.QuestionId" class="btn btn-outline-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
